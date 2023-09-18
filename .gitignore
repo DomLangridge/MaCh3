@@ -6,3 +6,4 @@
 *.la
 *.Plo
 lib/*
+build/*
