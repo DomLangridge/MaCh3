@@ -87,7 +87,7 @@ class MCMCProcessor {
     int GetNFD() { return nParam[kFDDetPar]; };
     int GetOSC() { return nParam[kOSCPar]; };
         
-    TH1D* const GetHpost(int i) { return hpost[i]; };
+    TH1D* GetHpost(int i) { return hpost[i]; };
 
     std::string const & GetXSecCov()  const { return CovPos[kXSecPar]; };
     std::string const & GetND280Cov() const { return CovPos[kND280Par]; };

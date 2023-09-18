@@ -31,8 +31,8 @@
 class samplePDFBase : public samplePDFInterface 
 {
  public:
-  samplePDFBase(){};
-  samplePDFBase(double pot);
+  // samplePDFBase(){};
+  samplePDFBase();
 
   virtual ~samplePDFBase();
 
@@ -40,7 +40,7 @@ class samplePDFBase : public samplePDFInterface
   std::string GetSampleName(int Sample);
   inline void GetSampleNames(std::vector<std::string> &sampleNameVect) ;
   inline void GetModeName(std::vector<std::string> &modeNameVect);
-  MaCh3_Modes* const GetModeStruct() const { return ModeStruct;};
+  MaCh3_Modes* GetModeStruct() const { return ModeStruct;};
   
   TH1D* get1DHist();                                               
   TH2D* get2DHist();
@@ -74,11 +74,11 @@ class samplePDFBase : public samplePDFInterface
   //virtual void whatAmI(){std::cout << "__FILE__" << std::endl;};
 
   // For adding sample dependent branches to the posteriors tree
-  virtual void setMCMCBranches(TTree *outtree) {};
+  virtual void setMCMCBranches(TTree *outtree)=0;
 
   protected:
-  void init(double pot);
-  void init(double pot, std::string mc_version);
+  void init();
+  // void init(std::string mc_version);
   
   //bool gpu_rw; 
 

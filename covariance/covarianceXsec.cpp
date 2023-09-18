@@ -371,7 +371,7 @@ void covarianceXsec::ParseYAML(const char* FileName)
 	 //Also loop through the correlations
 	 if(param["Systematic"]["Correlations"]) {
 	   std::cout << "FOUND " << param["Systematic"]["Correlations"].size() << " CORRELATIONS!" << std::endl;
-	   for(int Corr_i = 0 ; Corr_i < param["Systematic"]["Correlations"].size()  ; ++Corr_i){
+	   for(int Corr_i = 0 ; Corr_i < (int)param["Systematic"]["Correlations"].size()  ; ++Corr_i){
 		 for (YAML::const_iterator it=param["Systematic"]["Correlations"][Corr_i].begin();it!=param["Systematic"]["Correlations"][Corr_i].end();++it) {
 		   std::cout << "Correlation with " << it->first.as<std::string>() << " of " << it->second.as<double>() << std::endl;
            Correlations[i][it->first.as<std::string>()] = it->second.as<double>();
@@ -434,7 +434,7 @@ covarianceXsec::~covarianceXsec() {
 
 // ********************************************
 // DB Grab the Number of splines for the relevant DetID
-const int covarianceXsec::GetNumSplineParamsFromDetID(int DetID) {
+int covarianceXsec::GetNumSplineParamsFromDetID(int DetID) {
   int returnVal = 0; 
   for (int i = 0; i < nPars; ++i) {
     if ((GetXsecParamDetID(i) & DetID) == DetID) { //If parameter applies to required DetID
@@ -598,7 +598,7 @@ const std::vector<XsecNorms4> covarianceXsec::GetNormParsFromDetID(int DetID) {
 		  HasKinBounds = true;
 		}
 
-		for(int KinematicCut_i = 0 ; KinematicCut_i < _fKinematicPars[i].size() ; ++KinematicCut_i){
+		for(int KinematicCut_i = 0 ; KinematicCut_i < (int)_fKinematicPars[i].size() ; ++KinematicCut_i){
 		  //Push back with the string for the kinematic cut
 		  //std::cout << "----------------------" << std::endl;
 		  //std::cout << "Will apply a cut on " << _fKinematicPars.at(i).at(KinematicCut_i) << std::endl;
@@ -626,7 +626,7 @@ const std::vector<XsecNorms4> covarianceXsec::GetNormParsFromDetID(int DetID) {
 
 // ********************************************
 // DB Grab the number of Normalisation parameters for the relevant DetID
-const int covarianceXsec::GetNumFuncParamsFromDetID(int DetID) {
+int covarianceXsec::GetNumFuncParamsFromDetID(int DetID) {
   int returnVal = 0;
 
   for (int i = 0; i < nPars; ++i) {
@@ -740,7 +740,7 @@ void covarianceXsec::ScanParameters() {
 
 		FarSplineParsIndex.push_back(i);
 
-		for(int Mode_i = 0 ; Mode_i < _fFDSplineModes[nFarSplineParams].size() ; ++Mode_i){
+		for(int Mode_i = 0 ; Mode_i < (int)_fFDSplineModes[nFarSplineParams].size() ; ++Mode_i){
 		  std::cout << "Mode to apply to is " << _fFDSplineModes[nFarSplineParams][Mode_i] << std::endl;
 		}
 
@@ -821,7 +821,7 @@ void covarianceXsec::ScanParameters() {
 
 		  //ETA - push back kinematic type with dummy -999 since this needs to be converted into an enum for a kinematic type within
 		  //a samplePDFFD daughter class
-		  for(int KinVar_i = 0 ; KinVar_i < _fKinematicPars[i].size() ; ++KinVar_i) {
+		  for(int KinVar_i = 0 ; KinVar_i < (int)_fKinematicPars[i].size() ; ++KinVar_i) {
 			Selections[KinVar_i].push_back(-999.9);
 			Selections[KinVar_i].push_back(_fKinematicBounds[i][KinVar_i][0]);
 			Selections[KinVar_i].push_back(_fKinematicBounds[i][KinVar_i][1]);
@@ -920,7 +920,7 @@ void covarianceXsec::ScanParameters() {
 
 		  //ETA - push back kinematic type with dummy -999 since this needs to be converted into an enum for a kinematic type within
 		  //a samplePDFFD daughter class
-		  for(int KinVar_i = 0 ; KinVar_i < _fKinematicPars[i].size() ; ++KinVar_i) {
+		  for(int KinVar_i = 0 ; KinVar_i < (int)_fKinematicPars[i].size() ; ++KinVar_i) {
 			  Selections[KinVar_i].push_back(-999.9);
 			  Selections[KinVar_i].push_back(_fKinematicBounds[i][KinVar_i][0]);
 			  Selections[KinVar_i].push_back(_fKinematicBounds[i][KinVar_i][1]);
@@ -1026,7 +1026,7 @@ void covarianceXsec::initParams(double fScale) {
   // ********************************************
 
   for (int i = 0; i < size; ++i) {
-    char pname[10];
+    char pname[20];
     fParNames[i] = new Char_t[9];
     sprintf(pname, "xsec_%i", i);
     strcpy(fParNames[i], pname);

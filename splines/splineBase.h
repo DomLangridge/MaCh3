@@ -7,7 +7,7 @@
 class splineBase : public splineInterface
 {
  public:
-  splineBase(const char *spline, int nutype);
+  splineBase(int nutype);
   virtual ~splineBase();
   virtual void setupSplines(){};
       

@@ -2,7 +2,7 @@
 
 #include "splineBase.h"
 
-splineBase::splineBase(const char *name, int ntype)
+splineBase::splineBase(int ntype)
 {
   //splinefile = new TFile(name, "READ");
   nutype = ntype;

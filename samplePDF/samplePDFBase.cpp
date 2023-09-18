@@ -1,6 +1,6 @@
 #include "samplePDFBase.h"
 
-samplePDFBase::samplePDFBase(double pot) 
+samplePDFBase::samplePDFBase() 
 {
   nDims = 0;
   rnd = new TRandom3(0);
@@ -20,18 +20,16 @@ samplePDFBase::~samplePDFBase()
   delete rnd;
 }
 
-void samplePDFBase::init(double pot)
+void samplePDFBase::init()
 {
 }
 
-void samplePDFBase::init(double pot, std::string mc_version)
-{
-    
-    
-  //TODO KS: Need to set test stat from config file
-  // Set the test-statistic
-  //SetTestStatistic(static_cast<TestStatistic>(FitManager->GetMCStatLLH()));
-}
+// void samplePDFBase::init()//std::string mc_version)
+// {
+//   //TODO KS: Need to set test stat from config file
+//   // Set the test-statistic
+//   //SetTestStatistic(static_cast<TestStatistic>(FitManager->GetMCStatLLH()));
+// }
 
 void samplePDFBase::addData(std::vector<double> &data)
 {
@@ -295,6 +293,8 @@ double samplePDFBase::getTestStatLLH(double data, double mc) {
 
 double samplePDFBase::getLikelihood_kernel(std::vector<double> &dataSet)
 {
+  // HI::THIS IS IS A DUMMY!!!
+  return dataSet[0];
   // this doesnt work
   /*  std::cout << "kernel estimation likelihood" << std::endl;
       double sig = 0.5;

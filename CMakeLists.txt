@@ -107,6 +107,7 @@ if(NOT ${SINGLE_THREAD_ONLY})
   add_compile_options(-fopenmp -DMULTITHREAD)
   add_link_options(-fopenmp -DMULTITHREAD)
 endif()
+add_compile_options(-Werror -Wall -Wno-unused-variable)
 
 # Build components
 add_subdirectory(manager)

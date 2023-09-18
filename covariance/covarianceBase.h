@@ -92,7 +92,7 @@ class covarianceBase {
 
   // set a custom proposal function
   //DEPRECATED
-  void setPropFunct(int i, TF1 *func) {};
+  void setPropFunct(int i, TF1 *func);
 
   // Throwers
   void throwParProp(const double mag = 1.);
@@ -118,7 +118,7 @@ class covarianceBase {
   std::string const getInputFile() const { return inputFile; };
 
   // Get diagonal error for ith parameter
-  const double getDiagonalError(const int i) { 
+  double getDiagonalError(const int i) { 
     return sqrt((*covMatrix)(i,i));
   }
 
@@ -150,26 +150,26 @@ class covarianceBase {
 
   virtual std::vector<double> getNominalArray();
   const std::vector<double> getProposed() const;
-  const double getParProp(const int i) {
+  double getParProp(const int i) {
     return fParProp[i]; 
   };
-  const double getParCurr(const int i) {
+  double getParCurr(const int i) {
     return fParCurr[i];
   };
-  const double getParInit(const int i) {
+  double getParInit(const int i) {
     return fParInit[i];
   };
-  virtual const double getNominal(const int i) {
+  virtual double getNominal(const int i) {
     return getParInit(i);
   };
-  const double getParProp_PCA(const int i) {
+  double getParProp_PCA(const int i) {
     if (!pca) {
       std::cerr << "Am not running in PCA mode" << std::endl;
       throw;
     }
     return fParProp_PCA(i);
   };
-  const double getParCurr_PCA(const int i) {
+  double getParCurr_PCA(const int i) {
     if (!pca) {
       std::cerr << "Am not running in PCA mode" << std::endl;
       throw;
@@ -221,8 +221,8 @@ class covarianceBase {
     TransferToParam();
   }
 
-  const int getSize() { return size; };
-  const int getNpars() { 
+  int getSize() { return size; };
+  int getNpars() { 
     if (pca) return npars;
     else return size;
   }

@@ -46,8 +46,8 @@ class samplePDFFDBase : virtual public samplePDFBase , virtual public interfaceP
 public:
   //######################################### Functions #########################################
 
-  samplePDFFDBase(){};
-  samplePDFFDBase(double pot, std::string mc_version, covarianceXsec* xsec_cov);
+  samplePDFFDBase();
+  samplePDFFDBase(std::string mc_version, covarianceXsec* xsec_cov);
   virtual ~samplePDFFDBase();
 
   int GetNDim(); //DB Function to differentiate 1D or 2D binning
@@ -86,7 +86,7 @@ public:
 
   //DB Incredibly hardcoded - Could probably make 'LetsPrintSomeWeights' do the same functionality and remove this?
 
-  virtual void DumpWeights(std::string outname){return;};
+  // virtual void DumpWeights(std::string outname);
   // ETA - in the future it would be nice to have some generic getHIst functions
   // although, this introduces a root dependence into the core code?
   //TH1D *getModeHist1D(int s, int m, int style = 0);
@@ -101,7 +101,7 @@ public:
  
   //================================================================================
 
-  virtual void setupSplines(fdmc_base *skobj, const char *splineFile, int nutype, int signal){};
+  // virtual void setupSplines(fdmc_base *skobj, const char *splineFile, int nutype, int signal);
 
  protected:
   //fdmc_base contains pointers to the appropriate weights, so set these up
@@ -135,7 +135,7 @@ public:
   //===============================================================================
 
   //ETA - generic function applying shifts
-  virtual void applyShifts(int iSample, int iEvent){};
+  virtual void applyShifts(int iSample, int iEvent)=0;
   //DB Function which determines if an event is selected, where Selection double looks like {{ND280KinematicTypes Var1, douuble LowBound}
   bool IsEventSelected(int iSample, int iEvent); 
   bool IsEventSelected(std::vector< std::string > ParameterStr, int iSample, int iEvent);

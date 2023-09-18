@@ -34,8 +34,8 @@ class samplePDFInterface
   virtual void printPosteriors()=0; // save images of posterior histos
   
  protected:
-  virtual void init(double pot)=0;
-  virtual void init(double pot, std::string mc_version)=0;
+  virtual void init()=0;
+  // virtual void init()=0;
   virtual double getCovLikelihood()=0;
   virtual double getLikelihood_kernel(std::vector<double> &data)=0;
   virtual void fill1DHist()=0;
