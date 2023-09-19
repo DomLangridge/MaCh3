@@ -66,8 +66,7 @@ public:
   //===============================================================================
 
   void reweight(double *oscpar);
-  inline double GetEventWeight(int iSample, int iEntry);
-
+  double GetEventWeight(int iSample, int iEntry); 
   // Setup and config functions
   void UseNonDoubledAngles(bool ans) {doubled_angle = ans;};
   void UseBinnedOscReweighting(bool ans);
