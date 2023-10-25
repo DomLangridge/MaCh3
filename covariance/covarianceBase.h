@@ -92,7 +92,7 @@ class covarianceBase {
 
   // set a custom proposal function
   //DEPRECATED
-  void setPropFunct(int i, TF1 *func);
+  void setPropFunct(int i, TF1 *func){};
 
   // Throwers
   void throwParProp(const double mag = 1.);
